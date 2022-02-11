@@ -30,11 +30,6 @@ export class CatalogoControllers {
 
     @Get('')
     getIndex() {
-        return 'Working!!.'
-    }
-
-    @Get('list')
-    getList() {
         return [...this.listItems]
     }
 
