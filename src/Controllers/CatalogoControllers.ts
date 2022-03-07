@@ -14,23 +14,72 @@ export class CatalogoControllers {
     //#region Catalogos
     listTipoCuenta: any[] = [
         {
-            id: "ou5l8mchp3s",
-            Descripcion: "Cuenta Ahorro"
+            id: "savings",
+            description: "Cuenta Ahorro"
         },
         {
-            id: "1bxgrnux5m4",
-            Descripcion: "Cuenta Corriente"
-        },
-        {
-            id: "av23eu4plma",
-            Descripcion: "Cuenta Ahorro Futuro"
+            id: "checking",
+            description: "Cuenta Corriente"
         }
     ]
     //#endregion
 
+    bankList: any = [
+        {
+            bankName: 'Banco de Pichincha',
+            bankCode: '3'
+        },
+        {
+            bankName: 'Bank of America',
+            bankCode: '1'
+        },
+        {
+            bankName: 'Banco de Chile',
+            bankCode: '2'
+        },
+        {
+            bankName: 'Banco del Pacífico',
+            bankCode: '4'
+        }
+    ];
+
+    idTypes: any = [
+        {
+            id: 'CC',
+            description: 'Cédula de Ciudadanía'
+        },
+        {
+            id: 'CE',
+            description: 'Cédula de Extranjería'
+        },
+        {
+            id: 'TI',
+            description: 'Tarjeta de Identidad'
+        },
+        {
+            id: 'PA',
+            description: 'Pasaporte'
+        }
+    ];
+
     @Get('')
     getIndex() {
         return [...this.listItems]
+    }
+
+    @Get('banks')
+    getBankList() {
+        return [...this.bankList]
+    }
+
+    @Get('id-types')
+    getIdTypes() {
+        return [...this.idTypes]
+    }
+
+    @Get('account-types')
+    getAccountTypes() {
+        return [...this.listTipoCuenta]
     }
 
     @Post('')

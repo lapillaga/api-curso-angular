@@ -1,5 +1,5 @@
-import { Get, JsonController } from 'routing-controllers';
-import { Account } from '../Models/account';
+import {Body, Get, JsonController, Post, QueryParam} from 'routing-controllers';
+import {Account} from '../Models/account';
 
 @JsonController('/contacts/')
 export class ContactsController {
@@ -49,7 +49,18 @@ export class ContactsController {
   ];
 
   @Get('')
-  getIndex() {
+  getIndex(@QueryParam('name') name: string) {
+    if (name) {
+      return this.contacts.filter(contact => {
+        return contact.recipient.names.toLowerCase().includes(name.toLowerCase());
+      });
+    }
     return [...this.contacts];
+  }
+
+  @Post('')
+  createItem(@Body() body: Account) {
+    this.contacts.push(body)
+    return body;
   }
 }
